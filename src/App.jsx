@@ -47,7 +47,7 @@ const FontStyles = () => (
 
 const ASSETS = {
   logo: "https://static.wixstatic.com/media/74639d_6785283b06234d209d8c73fe26ad680f~mv2.png",
-  favicon: "https://static.wixstatic.com/media/74639d_6785283b06234d209d8c73fe26ad680f~mv2.png",
+  favicon: "https://static.wixstatic.com/media/548938_95a306d88315478bacf0b605dec07763~mv2.png",
   heroVideo: "https://video.wixstatic.com/video/74639d_75c7c7f9044e4b6e9c60a4cd5a8bcbdf/1080p/mp4/file.mp4"
 };
 
