@@ -152,7 +152,7 @@ const PROJECTS = [
     approvals: [
       "PMRDA-sanctioned NA bungalow plots"
     ],
-    description: "Vintage Park is an ongoing plotted development at Devale near Lonavala, offering PMRDA-sanctioned NA bungalow plots in a peaceful natural setting.",
+    description: "Vintage Park is an ongoing plotted development at Devale near Lonavala, offering PMRDA-sanctioned NA bungalow plots in a peaceful natural setting.\n\nThe project provides a serene environment away from the city hustle, making it an ideal choice for a second home or long-term investment.\n\nBuyers can review the available PMRDA documents and layout plans to ensure complete transparency before taking the next step.",
     amenities: [],
     mapUrl: null,
     images: [],
@@ -222,7 +222,7 @@ const PROJECTS = [
     approvals: [
       "Clear Title NA Plots"
     ],
-    description: "An exclusive pre-launch opportunity featuring clear title NA plots in one of Pune's fastest-growing investment destinations. The development offers excellent appreciation potential, a range of plot sizes from 1,300 to 4,000 sq.ft., and is set amidst peaceful natural surroundings with great road connectivity.",
+    description: "An exclusive pre-launch opportunity featuring clear title NA plots in one of Pune's fastest-growing investment destinations.\n\nThe development offers excellent appreciation potential, a range of plot sizes from 1,300 to 4,000 sq.ft., and is set amidst peaceful natural surroundings.\n\nWith great road connectivity and a focus on essential infrastructure, it serves as an ideal foundation for both future home construction and steady portfolio growth.",
     amenities: [
       "Clear Title NA Plots",
       "Excellent Appreciation Potential",
@@ -269,7 +269,7 @@ const SectionHeader = ({ eyebrow, titleFirst, titleItalic, description, actionTe
       </h2>
     </div>
     <div className="flex flex-col lg:items-end gap-6 lg:gap-8 w-full lg:w-2/5">
-      {description && <p className={`text-sm md:text-base font-light leading-relaxed font-poppins lg:text-right ${isDarkBg ? 'text-white/80' : 'text-stone-600'}`}>{description}</p>}
+      {description && <p className={`text-xs md:text-sm lg:text-base font-light leading-relaxed font-poppins lg:text-right ${isDarkBg ? 'text-white/80' : 'text-stone-600'}`}>{description}</p>}
       {actionText && (
         <button onClick={onAction} className={`group flex items-center gap-3 text-xs font-semibold uppercase tracking-widest transition-colors font-poppins ${isDarkBg ? 'text-white hover:text-amber-500' : 'text-[#022c22] hover:text-amber-600'}`}>
           {actionText} <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
@@ -320,7 +320,7 @@ const CustomDropdown = ({ label, value, options, onChange, placeholder }) => {
         className="flex justify-between items-center bg-transparent cursor-pointer group transition-colors text-white"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <span className={`text-sm md:text-base truncate pr-4 font-poppins ${!value ? 'text-white/80' : 'text-white font-medium'}`}>
+        <span className={`text-xs md:text-sm lg:text-base truncate pr-4 font-poppins ${!value ? 'text-white/80' : 'text-white font-medium'}`}>
           {value ? options.find(o => o.value === value)?.label : placeholder}
         </span>
         <ChevronDown size={16} className={`transform transition-transform text-white/50 group-hover:text-amber-500 ${isOpen ? 'rotate-180' : ''}`} />
@@ -336,7 +336,7 @@ const CustomDropdown = ({ label, value, options, onChange, placeholder }) => {
               {options.map(opt => (
                 <div 
                   key={opt.value} 
-                  className="px-4 py-3 text-sm text-stone-300 font-poppins hover:bg-white/10 hover:text-white cursor-pointer transition-colors"
+                  className="px-4 py-3 text-xs md:text-sm text-stone-300 font-poppins hover:bg-white/10 hover:text-white cursor-pointer transition-colors"
                   onClick={() => { onChange(opt.value); setIsOpen(false); }}
                 >
                   {opt.label}
@@ -416,12 +416,12 @@ const SearchOverlay = ({ isOpen, onClose, navigate }) => {
               <input 
                 id="search-input" type="text" value={query} onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search landmarks, insights..." 
-                className="w-full bg-transparent border-b-2 border-white/30 text-3xl md:text-5xl lg:text-6xl font-light font-poppins text-white pb-4 md:pb-6 focus:outline-none focus:border-amber-500 transition-colors placeholder:text-white/30"
+                className="w-full bg-transparent border-b-2 border-white/30 text-2xl md:text-4xl lg:text-5xl font-light font-poppins text-white pb-4 md:pb-6 focus:outline-none focus:border-amber-500 transition-colors placeholder:text-white/30"
               />
               <Search className="absolute right-0 top-2 text-white/50" size={40} />
             </div>
             <div className="mt-12 h-[50vh] overflow-y-auto pr-4 space-y-12 custom-scrollbar">
-              {query && results.projects.length === 0 && results.insights.length === 0 && <p className="text-white/50 text-lg font-poppins font-light">No curated results found for your query.</p>}
+              {query && results.projects.length === 0 && results.insights.length === 0 && <p className="text-white/50 text-sm md:text-base font-poppins font-light">No curated results found for your query.</p>}
               {results.projects.length > 0 && (
                 <div>
                   <h3 className="text-amber-500 uppercase tracking-widest text-xs font-semibold mb-6 flex items-center gap-2 font-poppins"><MapPin size={14}/> Verified Landmarks</h3>
@@ -541,10 +541,10 @@ const Navigation = ({ currentRoute, navigate, onOpenSearch }) => {
                     key={item.name} onClick={() => handleNav(item.route)} 
                     className="text-left flex items-center group w-fit"
                   >
-                    <span className={`text-4xl md:text-5xl lg:text-[4rem] font-light font-poppins transition-colors ${currentRoute === item.route ? 'text-amber-600' : 'text-stone-900 group-hover:text-amber-500'}`}>
+                    <span className={`text-3xl md:text-4xl lg:text-5xl font-light font-poppins transition-colors ${currentRoute === item.route ? 'text-amber-600' : 'text-stone-900 group-hover:text-amber-500'}`}>
                       {item.name}
                     </span>
-                    <ArrowRight size={32} className={`ml-4 transition-transform duration-300 ${currentRoute === item.route ? 'text-amber-600 translate-x-2' : 'text-transparent -translate-x-4 group-hover:text-amber-500 group-hover:translate-x-0'}`} />
+                    <ArrowRight size={28} className={`ml-4 transition-transform duration-300 ${currentRoute === item.route ? 'text-amber-600 translate-x-2' : 'text-transparent -translate-x-4 group-hover:text-amber-500 group-hover:translate-x-0'}`} />
                   </motion.button>
                 ))}
               </nav>
@@ -557,20 +557,20 @@ const Navigation = ({ currentRoute, navigate, onOpenSearch }) => {
                   <div className="w-12 h-12 rounded-full bg-[#fbf8ef] border border-stone-200 flex items-center justify-center group-hover:border-amber-300 shadow-sm transition-all">
                     <Search size={20} className="text-[#022c22]" />
                   </div>
-                  <span className="text-lg font-medium font-poppins">Search Landmarks</span>
+                  <span className="text-sm lg:text-base font-medium font-poppins">Search Landmarks</span>
                 </button>
 
                 <div className="flex flex-col gap-4">
                    <p className="text-[10px] font-bold text-amber-600 uppercase tracking-widest font-poppins">Direct Contact</p>
-                   <a href={`tel:${SITE_DATA.phone}`} className="text-2xl font-light text-stone-900 hover:text-[#022c22] font-poppins">{SITE_DATA.phone}</a>
-                   <a href={`mailto:${SITE_DATA.email}`} className="text-base text-stone-500 hover:text-[#022c22] font-poppins">{SITE_DATA.email}</a>
+                   <a href={`tel:${SITE_DATA.phone}`} className="text-xl lg:text-2xl font-light text-stone-900 hover:text-[#022c22] font-poppins">{SITE_DATA.phone}</a>
+                   <a href={`mailto:${SITE_DATA.email}`} className="text-sm lg:text-base text-stone-500 hover:text-[#022c22] font-poppins">{SITE_DATA.email}</a>
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mt-4">
-                   <a href={`https://wa.me/${SITE_DATA.whatsapp}`} className="bg-[#25D366] text-white px-8 py-4 rounded-xl text-sm font-bold tracking-widest uppercase shadow-lg font-poppins flex items-center justify-center gap-3 hover:bg-green-600 transition-colors">
+                   <a href={`https://wa.me/${SITE_DATA.whatsapp}`} className="bg-[#25D366] text-white px-8 py-4 rounded-xl text-xs md:text-sm font-bold tracking-widest uppercase shadow-lg font-poppins flex items-center justify-center gap-3 hover:bg-green-600 transition-colors">
                      <MessageCircle size={18} /> Private Chat
                    </a>
-                   <button onClick={() => handleNav('contact')} className="bg-[#022c22] text-white px-8 py-4 rounded-xl text-sm font-bold tracking-widest uppercase shadow-lg font-poppins flex items-center justify-center gap-3 hover:bg-amber-500 hover:text-[#022c22] transition-colors">
+                   <button onClick={() => handleNav('contact')} className="bg-[#022c22] text-white px-8 py-4 rounded-xl text-xs md:text-sm font-bold tracking-widest uppercase shadow-lg font-poppins flex items-center justify-center gap-3 hover:bg-amber-500 hover:text-[#022c22] transition-colors">
                      Schedule Viewing
                    </button>
                 </div>
@@ -600,7 +600,7 @@ const HeroSection = () => {
                 Carefully Curated <br className="hidden lg:block" />
                 <span className="italic font-medium text-white/90">Land Assets.</span>
               </h1>
-              <p className="text-white/80 text-sm md:text-base lg:text-lg leading-relaxed font-light max-w-2xl font-poppins">
+              <p className="text-white/80 text-xs md:text-sm lg:text-base leading-relaxed font-light max-w-2xl font-poppins">
                 ABM Landmarks focuses on thoroughly vetted, legally cleared plotted developments across strategic locations in Maharashtra. We prioritize documentation, clarity, and foundational infrastructure.
               </p>
             </motion.div>
@@ -614,7 +614,8 @@ const HeroSection = () => {
               <div className="w-full px-6 py-4 lg:py-2 h-[70px] lg:h-[60px] flex items-center">
                 <CustomDropdown label="Select Corridor" placeholder="Filter by Region" value={region} onChange={setRegion} options={[
                   {label: 'Devale / Lonavala', value: 'devale'}, 
-                  {label: 'Godumbre / Maval', value: 'godumbre'}
+                  {label: 'Godumbre / Maval', value: 'godumbre'},
+                  {label: 'Kasarsai / Pawana', value: 'kasarsai'}
                 ]} />
               </div>
             </div>
@@ -630,11 +631,11 @@ const HeroSection = () => {
 };
 
 const TrustSection = () => (
-  <section className="py-12 lg:py-16">
-    <div className="site-container grid grid-cols-2 md:grid-cols-4 gap-12 lg:gap-16 text-center">
+  <section className="w-full py-12 lg:py-16 bg-[#faf8f2]">
+    <div className="site-container grid grid-cols-2 md:grid-cols-4 gap-12 lg:gap-16 text-center border-b border-stone-200 pb-12 lg:pb-16">
       {SITE_DATA.metrics.map((metric, idx) => (
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} custom={idx} variants={cardVariants} key={idx} className="flex flex-col items-center">
-          <span className="text-5xl md:text-6xl lg:text-[4rem] font-light text-[#022c22] mb-4 font-poppins tracking-tight"><AnimatedCounter value={metric.value} suffix={metric.suffix} /></span>
+          <span className="text-4xl md:text-5xl lg:text-[4rem] font-light text-[#022c22] mb-4 font-poppins tracking-tight"><AnimatedCounter value={metric.value} suffix={metric.suffix} /></span>
           <span className="text-stone-500 font-medium text-[10px] md:text-xs uppercase tracking-widest leading-relaxed font-poppins">{metric.label}</span>
         </motion.div>
       ))}
@@ -645,26 +646,19 @@ const TrustSection = () => (
 const AboutSection = ({ navigate }) => (
   <section className="section-spacing">
     <div className="site-container">
+      <SectionHeader eyebrow="The ABM Promise" titleFirst="A Foundation of" titleItalic="Clarity." />
       <div className="flex flex-col lg:flex-row justify-between gap-16 lg:gap-24 items-stretch w-full">
         <div className="lg:w-1/2 w-full pr-0 lg:pr-8 flex flex-col justify-center">
-          <div className="flex items-center gap-4 mb-6">
-            <div className="h-[2px] w-12 bg-amber-500"></div>
-            <span className="font-semibold tracking-widest text-[10px] uppercase font-poppins text-amber-600">The ABM Promise</span>
+          <div className="space-y-6 text-stone-600 text-sm md:text-base font-light leading-relaxed mb-10 font-poppins w-full">
+            <p>ABM Landmarks focuses on mitigating the common complexities associated with real estate acquisition.</p>
+            <p>We carefully identify and develop land parcels in strategic corridors, emphasizing rigorous documentation and regulatory compliance from day one.</p>
+            <p>Before a project is officially presented, we ensure the necessary title searches and approvals—such as PMRDA layouts and NA orders—are actively secured or in process.</p>
+            <p>Our fundamental goal is to provide buyers with a secure, well-planned asset designed for long-term stability.</p>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-[4rem] font-light font-poppins leading-[1.1] tracking-tight text-stone-900 mb-10">
-            A Foundation of <br className="hidden md:block"/>
-            <span className="font-medium italic text-[#022c22]">Clarity.</span>
-          </h2>
-          <p className="text-stone-600 text-base md:text-lg font-light leading-relaxed mb-6 font-poppins w-full">
-            ABM Landmarks focuses on mitigating the common complexities associated with real estate acquisition. We carefully identify and develop land parcels in strategic corridors, emphasizing rigorous documentation and regulatory compliance.
-          </p>
-          <p className="text-stone-600 text-base md:text-lg font-light leading-relaxed mb-10 font-poppins w-full">
-            Before a project is officially presented, we ensure the necessary title searches and approvals—such as PMRDA layouts and NA orders—are actively secured or in process. Our goal is to provide buyers with a secure, well-planned asset.
-          </p>
-          <button onClick={() => { navigate('about'); window.scrollTo(0,0); }} className="text-[#022c22] font-semibold text-xs uppercase tracking-widest flex items-center gap-3 hover:text-amber-600 transition-colors font-poppins group mt-auto pt-6">Explore Our Philosophy <ArrowRight size={16} className="transform transition-transform group-hover:translate-x-1" /></button>
+          <button onClick={() => { navigate('about'); window.scrollTo(0,0); }} className="text-[#022c22] font-semibold text-xs uppercase tracking-widest flex items-center gap-3 hover:text-amber-600 transition-colors font-poppins group w-fit">Explore Our Philosophy <ArrowRight size={16} className="transform transition-transform group-hover:translate-x-1" /></button>
         </div>
-        <div className="lg:w-1/2 w-full relative">
-          <div className="w-full h-full overflow-hidden rounded-[2.5rem] relative shadow-2xl">
+        <div className="lg:w-1/2 w-full relative flex">
+          <div className="w-full flex-grow overflow-hidden rounded-[2.5rem] relative shadow-2xl min-h-[400px]">
             <div className="absolute inset-0 bg-[#022c22]/40 mix-blend-multiply z-10 pointer-events-none"></div>
             <div className="absolute inset-0 bg-gradient-to-t from-[#022c22]/90 via-transparent to-transparent z-10 pointer-events-none opacity-80"></div>
             <motion.img animate={{ scale: [1, 1.15, 1] }} transition={{ duration: 25, repeat: Infinity, ease: "linear" }} src="https://static.wixstatic.com/media/74639d_656298cd109b43c2b383f609a2175873~mv2.jpeg" alt="ABM Landmarks Architectural Philosophy" className="w-full h-full object-cover absolute inset-0" />
@@ -687,9 +681,9 @@ const ProcessSection = ({ navigate }) => (
           { step: '04', title: 'Buyer Assistance', desc: 'The team assists with project information, site visits, documentation access and purchase coordination.' }
         ].map((item, idx) => (
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} custom={idx} variants={cardVariants} key={idx} className="flex flex-col relative group">
-            <span className="text-amber-500 text-5xl font-light font-poppins mb-6">{item.step}</span>
-            <h4 className="text-xl font-medium mb-4 font-poppins">{item.title}</h4>
-            <p className="text-white/60 text-sm font-light leading-relaxed font-poppins pr-4">{item.desc}</p>
+            <span className="text-amber-500 text-4xl md:text-5xl font-light font-poppins mb-6">{item.step}</span>
+            <h4 className="text-lg lg:text-xl font-medium mb-4 font-poppins">{item.title}</h4>
+            <p className="text-white/60 text-xs md:text-sm font-light leading-relaxed font-poppins pr-4">{item.desc}</p>
           </motion.div>
         ))}
       </div>
@@ -721,11 +715,11 @@ const FeaturedProjects = ({ navigate }) => (
             </div>
             <div className="p-8 lg:p-10 w-full flex flex-col flex-grow">
               <h3 className="text-3xl lg:text-[2.5rem] font-light font-poppins leading-[1.1] tracking-tight text-stone-900 mb-2">{project.title}</h3>
-              <p className="text-stone-500 text-sm mb-6 flex items-center gap-2 font-poppins"><MapPin size={14} className="shrink-0"/> {project.location}</p>
+              <p className="text-stone-500 text-xs md:text-sm mb-6 flex items-center gap-2 font-poppins"><MapPin size={14} className="shrink-0"/> {project.location}</p>
               <div className="flex flex-wrap gap-6 border-t border-stone-200/60 pt-6 mt-auto">
                 <div className="w-full sm:w-auto">
                   <p className="text-[10px] text-stone-400 uppercase tracking-widest mb-1 font-poppins">Status</p>
-                  <p className="text-sm font-medium text-stone-900 font-poppins">{project.approvals[0]}</p>
+                  <p className="text-xs md:text-sm font-medium text-stone-900 font-poppins">{project.approvals[0]}</p>
                 </div>
               </div>
             </div>
@@ -776,7 +770,7 @@ const DocumentationPreview = ({ navigate }) => (
           ].map((item, idx) => (
              <div key={idx} className="bg-[#fbf8ef] border border-stone-200 p-8 rounded-[2rem] flex flex-col h-full">
                 <h3 className="text-xl font-medium text-stone-900 mb-4 font-poppins shrink-0">{item.title}</h3>
-                <p className="text-sm font-light text-stone-600 leading-relaxed font-poppins flex-grow">{item.desc}</p>
+                <p className="text-xs md:text-sm font-light text-stone-600 leading-relaxed font-poppins flex-grow">{item.desc}</p>
              </div>
           ))}
        </div>
@@ -798,7 +792,7 @@ const WhyChooseABMSection = () => (
              <div key={idx} className="bg-[#fbf8ef] border border-stone-200 p-8 rounded-[2rem] shadow-sm flex flex-col h-full">
                 <div className="w-12 h-12 bg-[#f4efe1] rounded-xl flex items-center justify-center mb-6 shrink-0"><CheckCircle2 size={24} className="text-amber-600"/></div>
                 <h3 className="text-lg font-medium text-stone-900 mb-4 font-poppins shrink-0">{item.title}</h3>
-                <p className="text-sm font-light text-stone-600 leading-relaxed font-poppins flex-grow">{item.desc}</p>
+                <p className="text-xs md:text-sm font-light text-stone-600 leading-relaxed font-poppins flex-grow">{item.desc}</p>
              </div>
           ))}
        </div>
@@ -830,7 +824,7 @@ const FAQSection = () => {
               </button>
               <AnimatePresence>
                 {openIdx === idx && (
-                  <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="px-8 pb-6 text-stone-600 font-light leading-relaxed font-poppins text-sm md:text-base">
+                  <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="px-8 pb-6 text-stone-600 font-light leading-relaxed font-poppins text-xs md:text-sm">
                     <div className="pt-4 border-t border-stone-200/50">{faq.a}</div>
                   </motion.div>
                 )}
@@ -858,7 +852,7 @@ const InsightsPreview = ({ navigate }) => (
                 <div className="p-8 flex flex-col flex-grow w-full">
                    <span className="text-stone-400 text-[10px] font-semibold tracking-widest uppercase mb-3 block font-poppins">{insight.date}</span>
                    <h3 className="text-2xl lg:text-[2rem] font-light font-poppins leading-[1.2] tracking-tight text-stone-900 mb-4 w-full">{insight.title}</h3>
-                   <p className="text-stone-600 text-sm font-light leading-relaxed mb-6 flex-grow font-poppins w-full">{insight.summary}</p>
+                   <p className="text-stone-600 text-xs md:text-sm font-light leading-relaxed mb-6 flex-grow font-poppins w-full">{insight.summary}</p>
                    <button onClick={() => { navigate('insights'); window.scrollTo(0,0); }} className="text-[#022c22] font-semibold text-[10px] md:text-xs uppercase tracking-widest flex items-center gap-2 hover:text-amber-600 transition-colors font-poppins mt-auto w-fit">Read More <ArrowRight size={16} /></button>
                 </div>
              </div>
@@ -877,7 +871,7 @@ const PreFooter = ({ navigate }) => (
       
       <div className="relative z-30 flex flex-col items-center max-w-3xl w-full mx-auto">
         <h2 className="text-4xl md:text-5xl lg:text-[4rem] font-light font-poppins leading-[1.1] tracking-tight text-white mb-8">Understand the project <br className="hidden md:block"/><span className="font-medium italic text-amber-500">before making the decision.</span></h2>
-        <p className="text-white/80 font-light mb-12 max-w-xl text-base md:text-lg font-poppins leading-relaxed">Explore the location, current development and available documents, or speak with the ABM Landmarks team to schedule a site visit.</p>
+        <p className="text-white/80 font-light mb-12 max-w-xl text-sm md:text-base font-poppins leading-relaxed">Explore the location, current development and available documents, or speak with the ABM Landmarks team to schedule a site visit.</p>
         <div className="flex flex-col sm:flex-row justify-center gap-6 w-full sm:w-auto">
           <button onClick={() => { navigate('projects'); window.scrollTo(0,0); }} className="bg-amber-500 hover:bg-amber-400 text-[#022c22] px-10 py-5 rounded-xl font-bold tracking-widest uppercase transition-colors text-xs flex items-center justify-center gap-3 font-poppins shadow-xl"><FileText size={18} /> View Current Projects</button>
           <a href={`tel:${SITE_DATA.phone}`} className="bg-[#fbf8ef]/10 hover:bg-[#fbf8ef]/20 backdrop-blur-md border border-[#fbf8ef]/20 text-white px-10 py-5 rounded-xl font-bold tracking-widest uppercase transition-colors text-xs flex items-center justify-center gap-3 font-poppins"><Phone size={18} /> Schedule a Site Visit</a>
@@ -892,7 +886,7 @@ const Footer = ({ navigate }) => (
     <div className="site-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 lg:gap-12 mb-16">
       <div className="col-span-1 lg:col-span-1">
         <img src={ASSETS.logo} alt="ABM Landmarks" className="h-12 mb-8 brightness-0 invert" />
-        <p className="text-white/70 text-sm font-light leading-relaxed font-poppins w-full max-w-xs">{SITE_DATA.brand} secures land assets through focused documentation and structured development.</p>
+        <p className="text-white/70 text-xs md:text-sm font-light leading-relaxed font-poppins w-full max-w-xs">{SITE_DATA.brand} secures land assets through focused documentation and structured development.</p>
       </div>
       <div>
         <h4 className="text-white font-semibold mb-6 uppercase tracking-widest text-[10px] font-poppins">Navigation</h4>
@@ -901,14 +895,14 @@ const Footer = ({ navigate }) => (
             const routeMap = { 'Philosophy': 'about', 'Landmarks': 'projects', 'How We Work': 'how-we-work' };
             const route = routeMap[link] || link.toLowerCase();
             return (
-              <li key={link}><button onClick={() => { navigate(route); window.scrollTo(0,0); }} className="text-white/70 hover:text-amber-500 transition-colors text-sm font-poppins">{link}</button></li>
+              <li key={link}><button onClick={() => { navigate(route); window.scrollTo(0,0); }} className="text-white/70 hover:text-amber-500 transition-colors text-xs md:text-sm font-poppins">{link}</button></li>
             );
           })}
         </ul>
       </div>
       <div>
         <h4 className="text-white font-semibold mb-6 uppercase tracking-widest text-[10px] font-poppins">Contact</h4>
-        <ul className="space-y-4 text-sm text-white/70 font-poppins">
+        <ul className="space-y-4 text-xs md:text-sm text-white/70 font-poppins">
           <li>{SITE_DATA.address}</li>
           <li><a href={`tel:${SITE_DATA.phone}`} className="hover:text-amber-500 transition-colors">{SITE_DATA.phone}</a></li>
           {SITE_DATA.altPhone && <li><a href={`tel:${SITE_DATA.altPhone}`} className="hover:text-amber-500 transition-colors">{SITE_DATA.altPhone}</a></li>}
@@ -919,7 +913,7 @@ const Footer = ({ navigate }) => (
         <h4 className="text-white font-semibold mb-6 uppercase tracking-widest text-[10px] font-poppins">Legal</h4>
         <ul className="space-y-4">
           {['Privacy Policy', 'Terms of Service', 'Disclaimer'].map(link => (
-            <li key={link}><button onClick={() => { navigate(link.split(' ')[0].toLowerCase()); window.scrollTo(0,0); }} className="text-white/70 hover:text-amber-500 transition-colors text-sm font-poppins">{link}</button></li>
+            <li key={link}><button onClick={() => { navigate(link.split(' ')[0].toLowerCase()); window.scrollTo(0,0); }} className="text-white/70 hover:text-amber-500 transition-colors text-xs md:text-sm font-poppins">{link}</button></li>
           ))}
         </ul>
       </div>
@@ -954,7 +948,7 @@ const PageHero = ({ eyebrow, titleFirst, titleItalic, description, image, video 
            <h1 className="text-4xl md:text-5xl lg:text-[5rem] font-light font-poppins leading-[1.1] tracking-tight text-white mb-6">
              {titleFirst} <br className="hidden md:block"/><span className="italic font-medium text-white/90">{titleItalic}</span>
            </h1>
-           {description && <p className="text-base md:text-lg lg:text-xl text-white/80 font-light max-w-2xl leading-relaxed font-poppins">{description}</p>}
+           {description && <p className="text-sm md:text-base lg:text-lg text-white/80 font-light max-w-2xl leading-relaxed font-poppins">{description}</p>}
          </motion.div>
       </div>
     </div>
@@ -1013,9 +1007,11 @@ const AboutView = ({ navigate }) => {
                  It begins with a <br/>
                  <span className="font-medium italic text-[#022c22]">Piece of Earth.</span>
                </h2>
-               <div className="space-y-8 text-stone-600 font-light leading-relaxed text-base lg:text-lg font-poppins w-full">
-                  <p>Operating from our headquarters at Platinum Tower in Pune, ABM Landmarks emerged from a singular, disruptive vision: to eliminate the anxiety and opacity traditionally associated with land transactions in India. We recognize that purchasing a plot is never just a transaction—it is the laying down of roots. It is the cornerstone of a family's legacy.</p>
-                  <p>Unlike conventional brokerages that simply list unverified properties, we operate as deep-tier developers and acquisition specialists. We spend years identifying high-growth corridors—exclusively focusing on the Talegaon, Chandkhed, and Kuran Budruk belts.</p>
+               <div className="space-y-6 text-stone-600 font-light leading-relaxed text-sm lg:text-base font-poppins w-full">
+                  <p>ABM Landmarks emerged from a singular vision: to bring greater clarity, organization, and transparency to land transactions in Maharashtra.</p>
+                  <p>We recognize that purchasing a plot requires significant careful consideration. It is never just a transaction—it is the laying down of roots and the cornerstone of a family's future legacy.</p>
+                  <p>Operating as focused acquisition and development specialists, we spend considerable time identifying specific, high-potential corridors.</p>
+                  <p>Our current focus lies in the emerging belts of Pune West, including Devale, Godumbre, and Kasarsai, ensuring proper vetting and planning before any project is brought to the public.</p>
                </div>
              </div>
              <div className="lg:w-1/2 w-full relative">
@@ -1057,7 +1053,7 @@ const AboutView = ({ navigate }) => {
                  <h2 className="text-4xl md:text-5xl lg:text-[4rem] font-light font-poppins leading-[1.1] tracking-tight text-white mb-8">
                    Documentation <br/><span className="font-medium italic text-amber-500">Review.</span>
                  </h2>
-                 <p className="text-white/80 font-light text-base lg:text-lg leading-relaxed font-poppins mb-10 pr-0 lg:pr-8">
+                 <p className="text-white/80 font-light text-sm lg:text-base leading-relaxed font-poppins mb-10 pr-0 lg:pr-8">
                    Before a single parcel is offered to the public, our legal consortium executes a ruthless search report. We clear every encumbrance, secure Non-Agricultural (NA) sanctions from the Collector, and handle layouts. Your capital is protected by our unyielding due diligence.
                  </p>
                  <div className="border-l-2 border-amber-500 pl-6 py-2">
@@ -1089,7 +1085,7 @@ const AboutView = ({ navigate }) => {
                      {val.subtitle}
                    </span>
                    <h3 className="text-3xl lg:text-[2.5rem] font-light font-poppins leading-[1.1] tracking-tight mb-6">{val.title}</h3>
-                   <p className={`font-light text-sm leading-relaxed font-poppins w-full ${activeValue === idx ? 'text-white/80' : 'text-stone-500'}`}>
+                   <p className={`font-light text-xs md:text-sm leading-relaxed font-poppins w-full ${activeValue === idx ? 'text-white/80' : 'text-stone-500'}`}>
                      {val.desc}
                    </p>
                 </div>
@@ -1113,7 +1109,7 @@ const AboutView = ({ navigate }) => {
                     <div className="w-12 h-12 rounded-xl bg-[#292524] flex items-center justify-center mb-8 border border-stone-700"><team.icon size={20} className="text-amber-500"/></div>
                     <span className="text-amber-500 text-[9px] font-bold uppercase tracking-widest mb-3 block font-poppins">{team.role}</span>
                     <h4 className="text-3xl lg:text-[2.5rem] font-light font-poppins leading-[1.1] tracking-tight text-white mb-6">{team.title}</h4>
-                    <p className="text-stone-400 font-light text-sm leading-relaxed font-poppins w-full">{team.desc}</p>
+                    <p className="text-stone-400 font-light text-xs md:text-sm leading-relaxed font-poppins w-full">{team.desc}</p>
                   </div>
                ))}
             </div>
@@ -1142,9 +1138,10 @@ const HowWeWorkView = ({ navigate }) => {
             <h2 className="text-4xl md:text-5xl lg:text-[4rem] font-light font-poppins leading-[1.1] tracking-tight text-stone-900 max-w-5xl">
               Every project begins with <span className="italic font-medium text-[#022c22]">clarity.</span>
             </h2>
-            <p className="text-stone-600 font-light leading-relaxed text-base font-poppins flex-child reading-width">
-              Land purchases involve location, planning, documentation and on-ground development. Our approach is to present the available project information clearly and help buyers understand the next practical step.
-            </p>
+            <div className="space-y-6 text-stone-600 font-light leading-relaxed text-sm md:text-base font-poppins flex-child reading-width">
+               <p>Land purchases involve a multitude of factors including location, planning, documentation, and on-ground development.</p>
+               <p>Our approach is to present all available project information with absolute clarity, helping buyers understand the next practical step in their acquisition journey without pressure or opacity.</p>
+            </div>
           </div>
         </section>
 
@@ -1170,7 +1167,7 @@ const HowWeWorkView = ({ navigate }) => {
                    </div>
                    <div className="lg:w-2/3 flex flex-col flex-child text-center lg:text-left">
                      <h3 className="text-3xl lg:text-[2.5rem] font-light font-poppins leading-[1.1] tracking-tight text-stone-900 mb-4">{step.title}</h3>
-                     <p className="text-stone-600 font-light text-base leading-relaxed font-poppins max-w-xl">{step.desc}</p>
+                     <p className="text-stone-600 font-light text-sm md:text-base leading-relaxed font-poppins max-w-xl">{step.desc}</p>
                    </div>
                 </div>
               ))}
@@ -1254,18 +1251,18 @@ const ProjectsView = ({ navigate }) => {
                 <div className="lg:w-5/12 p-10 lg:p-16 flex flex-col justify-center w-full">
                   <div className="flex items-center gap-2 text-amber-600 font-semibold text-xs mb-6 uppercase tracking-widest font-poppins"><MapPin size={16} /> {project.location}</div>
                   <h2 className="text-3xl md:text-4xl lg:text-[3rem] font-light font-poppins leading-[1.1] tracking-tight text-stone-900 mb-8">{project.title}</h2>
-                  <p className="text-stone-600 mb-12 font-light text-base lg:text-lg leading-relaxed font-poppins w-full">{project.description}</p>
+                  <p className="text-stone-600 mb-12 font-light text-sm lg:text-base leading-relaxed font-poppins w-full whitespace-pre-line">{project.description}</p>
                   
                   <div className="grid grid-cols-2 gap-8 border-y border-stone-200/50 py-8 mb-12 w-full">
                      {(project.area || project.plotSizes) && (
                        <div className="w-full">
                          <p className="text-[10px] text-stone-400 uppercase tracking-widest mb-3 font-semibold font-poppins">Scale</p>
-                         <p className="font-medium text-base lg:text-lg text-stone-900 font-poppins flex items-center gap-2"><Ruler size={18} className="text-[#022c22]"/>{project.area || project.plotSizes}</p>
+                         <p className="font-medium text-sm lg:text-base text-stone-900 font-poppins flex items-center gap-2"><Ruler size={18} className="text-[#022c22]"/>{project.area || project.plotSizes}</p>
                        </div>
                      )}
                      <div className="w-full">
                        <p className="text-[10px] text-stone-400 uppercase tracking-widest mb-3 font-semibold font-poppins">Status</p>
-                       <p className="font-medium text-base lg:text-lg text-stone-900 font-poppins flex items-center gap-2"><ShieldCheck size={18} className="text-[#022c22]"/>{project.approvals[0]}</p>
+                       <p className="font-medium text-sm lg:text-base text-stone-900 font-poppins flex items-center gap-2"><ShieldCheck size={18} className="text-[#022c22]"/>{project.approvals[0]}</p>
                      </div>
                   </div>
                   
@@ -1321,7 +1318,7 @@ const ProjectDetailView = ({ projectId, navigate }) => {
                  <span className="bg-white/20 backdrop-blur-md text-white px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-widest font-poppins border border-white/20">{project.type}</span>
                </div>
                <h1 className="text-4xl md:text-5xl lg:text-[5rem] font-light text-white mb-6 leading-[1.1] tracking-tight font-poppins">{project.title}</h1>
-               <p className="text-white/80 font-light flex items-center gap-2 font-poppins text-base md:text-lg lg:text-xl"><MapPin size={18}/> {project.location}</p>
+               <p className="text-white/80 font-light flex items-center gap-2 font-poppins text-sm md:text-base"><MapPin size={18}/> {project.location}</p>
              </motion.div>
            </div>
          </div>
@@ -1336,7 +1333,7 @@ const ProjectDetailView = ({ projectId, navigate }) => {
                  <span className="text-amber-600 font-semibold tracking-widest text-[10px] uppercase font-poppins">Project Overview</span>
                </div>
                <h3 className="text-3xl lg:text-[2.5rem] font-light text-stone-900 mb-6 font-poppins leading-[1.1] tracking-tight">About the Development</h3>
-               <p className="text-stone-600 font-light leading-relaxed text-base lg:text-lg font-poppins whitespace-pre-line">{project.description}</p>
+               <p className="text-stone-600 font-light leading-relaxed text-sm lg:text-base font-poppins whitespace-pre-line">{project.description}</p>
              </div>
              
              {project.amenities && project.amenities.length > 0 && (
@@ -1344,8 +1341,8 @@ const ProjectDetailView = ({ projectId, navigate }) => {
                  <h3 className="text-2xl font-medium text-stone-900 mb-6 font-poppins flex items-center gap-3"><Trees size={24} className="text-amber-600"/> Lifestyle Amenities</h3>
                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                    {project.amenities.map((amenity, i) => (
-                     <div key={i} className="flex items-start gap-3 text-sm lg:text-base text-stone-700 font-medium font-poppins bg-[#fbf8ef] p-5 rounded-xl border border-stone-200 shadow-sm w-full">
-                       <CheckCircle2 size={20} className="text-emerald-600 shrink-0 mt-0.5"/> {amenity}
+                     <div key={i} className="flex items-start gap-3 text-xs md:text-sm text-stone-700 font-medium font-poppins bg-[#fbf8ef] p-5 rounded-xl border border-stone-200 shadow-sm w-full">
+                       <CheckCircle2 size={18} className="text-emerald-600 shrink-0 mt-0.5"/> {amenity}
                      </div>
                    ))}
                  </div>
@@ -1375,7 +1372,7 @@ const ProjectDetailView = ({ projectId, navigate }) => {
                    {project.documents.map((doc, i) => (
                      <div key={i} className="bg-[#fbf8ef] border border-stone-200 p-8 rounded-[2rem] shadow-sm flex flex-col group hover:border-amber-500 transition-colors">
                         <h4 className="text-lg font-medium text-stone-900 font-poppins mb-3">{doc.title}</h4>
-                        <p className="text-sm text-stone-600 font-poppins font-light leading-relaxed mb-8 flex-grow">{doc.desc}</p>
+                        <p className="text-xs md:text-sm text-stone-600 font-poppins font-light leading-relaxed mb-8 flex-grow">{doc.desc}</p>
                         <a href={doc.file} target="_blank" rel="noopener noreferrer" className="text-[10px] font-bold text-[#022c22] uppercase tracking-widest flex items-center gap-2 group-hover:text-amber-600 transition-colors bg-white px-4 py-3 rounded-lg border border-stone-200 w-fit">
                           View Document <ExternalLink size={14}/>
                         </a>
@@ -1396,33 +1393,33 @@ const ProjectDetailView = ({ projectId, navigate }) => {
                  {project.price && (
                    <li>
                      <span className="block text-[10px] uppercase tracking-widest text-stone-500 font-poppins mb-1 flex items-center gap-1"><IndianRupee size={12}/> Pricing</span>
-                     <span className="block text-lg font-medium text-stone-900 font-poppins">{project.price}</span>
+                     <span className="block text-base font-medium text-stone-900 font-poppins">{project.price}</span>
                    </li>
                  )}
                  {project.surveyNumber && (
                    <li>
                      <span className="block text-[10px] uppercase tracking-widest text-stone-500 font-poppins mb-1">Survey / Gat No.</span>
-                     <span className="block font-medium text-stone-900 font-poppins">{project.surveyNumber}</span>
+                     <span className="block font-medium text-sm text-stone-900 font-poppins">{project.surveyNumber}</span>
                    </li>
                  )}
                  {project.area && (
                    <li>
                      <span className="block text-[10px] uppercase tracking-widest text-stone-500 font-poppins mb-1">Total Area</span>
-                     <span className="block font-medium text-stone-900 font-poppins">{project.area}</span>
+                     <span className="block font-medium text-sm text-stone-900 font-poppins">{project.area}</span>
                    </li>
                  )}
                  {project.plotSizes && (
                    <li>
                      <span className="block text-[10px] uppercase tracking-widest text-stone-500 font-poppins mb-1">Plot Sizes</span>
-                     <span className="block font-medium text-stone-900 font-poppins">{project.plotSizes}</span>
+                     <span className="block font-medium text-sm text-stone-900 font-poppins">{project.plotSizes}</span>
                    </li>
                  )}
                  <li>
                    <span className="block text-[10px] uppercase tracking-widest text-stone-500 font-poppins mb-2">Approvals & Status</span>
                    <ul className="space-y-3">
                      {project.approvals.map((app, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-stone-700 font-poppins font-medium">
-                          <CheckCircle2 size={18} className="text-emerald-600 shrink-0 mt-0.5"/> <span>{app}</span>
+                        <li key={i} className="flex items-start gap-2 text-xs md:text-sm text-stone-700 font-poppins font-medium">
+                          <CheckCircle2 size={16} className="text-emerald-600 shrink-0 mt-0.5"/> <span>{app}</span>
                         </li>
                      ))}
                    </ul>
@@ -1464,18 +1461,18 @@ const ContactView = () => (
             <h3 className="text-4xl md:text-5xl font-light tracking-tight leading-[1.1] text-stone-900 mb-10 font-poppins">Request a <span className="font-medium italic">Consultation.</span></h3>
             <form className="flex flex-col gap-6 w-full" onSubmit={(e) => e.preventDefault()}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
-                <input type="text" required className="w-full bg-[#f4efe1] border border-stone-200 rounded-xl py-4 lg:py-5 px-6 text-sm md:text-base focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all placeholder:text-stone-400 font-poppins" placeholder="First Name" />
-                <input type="text" required className="w-full bg-[#f4efe1] border border-stone-200 rounded-xl py-4 lg:py-5 px-6 text-sm md:text-base focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all placeholder:text-stone-400 font-poppins" placeholder="Last Name" />
+                <input type="text" required className="w-full bg-[#f4efe1] border border-stone-200 rounded-xl py-4 lg:py-5 px-6 text-xs md:text-sm focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all placeholder:text-stone-400 font-poppins" placeholder="First Name" />
+                <input type="text" required className="w-full bg-[#f4efe1] border border-stone-200 rounded-xl py-4 lg:py-5 px-6 text-xs md:text-sm focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all placeholder:text-stone-400 font-poppins" placeholder="Last Name" />
               </div>
-              <input type="email" required className="w-full bg-[#f4efe1] border border-stone-200 rounded-xl py-4 lg:py-5 px-6 text-sm md:text-base focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all placeholder:text-stone-400 font-poppins" placeholder="Email Address" />
-              <input type="tel" required className="w-full bg-[#f4efe1] border border-stone-200 rounded-xl py-4 lg:py-5 px-6 text-sm md:text-base focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all placeholder:text-stone-400 font-poppins" placeholder="Phone Number" />
-              <select defaultValue="" required className="w-full bg-[#f4efe1] border border-stone-200 rounded-xl py-4 lg:py-5 px-6 text-sm md:text-base focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all text-stone-600 appearance-none cursor-pointer font-poppins">
+              <input type="email" required className="w-full bg-[#f4efe1] border border-stone-200 rounded-xl py-4 lg:py-5 px-6 text-xs md:text-sm focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all placeholder:text-stone-400 font-poppins" placeholder="Email Address" />
+              <input type="tel" required className="w-full bg-[#f4efe1] border border-stone-200 rounded-xl py-4 lg:py-5 px-6 text-xs md:text-sm focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all placeholder:text-stone-400 font-poppins" placeholder="Phone Number" />
+              <select defaultValue="" required className="w-full bg-[#f4efe1] border border-stone-200 rounded-xl py-4 lg:py-5 px-6 text-xs md:text-sm focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all text-stone-600 appearance-none cursor-pointer font-poppins">
                 <option value="" disabled>Subject of Inquiry...</option>
                 {PROJECTS.map(p => <option key={p.id} value={p.id}>Project: {p.title}</option>)}
                 <option value="custom">Bespoke Estate Services</option>
                 <option value="general">General Advisory</option>
               </select>
-              <textarea required rows="4" className="w-full bg-[#f4efe1] border border-stone-200 rounded-xl py-4 lg:py-5 px-6 text-sm md:text-base focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all placeholder:text-stone-400 font-poppins resize-none" placeholder="Share your inquiry with us..."></textarea>
+              <textarea required rows="4" className="w-full bg-[#f4efe1] border border-stone-200 rounded-xl py-4 lg:py-5 px-6 text-xs md:text-sm focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all placeholder:text-stone-400 font-poppins resize-none" placeholder="Share your inquiry with us..."></textarea>
               <button type="submit" className="w-full bg-[#022c22] hover:bg-amber-500 hover:text-[#022c22] text-white py-5 text-sm font-bold tracking-widest uppercase rounded-xl transition-all duration-300 shadow-xl flex justify-center items-center gap-3 mt-4 font-poppins">Submit Inquiry <ArrowRight size={18} /></button>
             </form>
           </div>
@@ -1489,23 +1486,23 @@ const ContactView = () => (
                   <div className="p-4 bg-white/10 rounded-2xl shrink-0 backdrop-blur-md border border-white/10"><NavIcon size={24} className="text-white"/></div>
                   <div className="w-full">
                     <p className="text-[10px] font-bold mb-2 uppercase tracking-wider font-poppins text-amber-500">Address</p>
-                    <p className="text-base lg:text-lg font-light leading-relaxed font-poppins text-white/90 w-full">{SITE_DATA.address}</p>
+                    <p className="text-sm lg:text-base font-light leading-relaxed font-poppins text-white/90 w-full">{SITE_DATA.address}</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-6 w-full">
                   <div className="p-4 bg-white/10 rounded-2xl shrink-0 backdrop-blur-md border border-white/10"><Phone size={24} className="text-white"/></div>
                   <div className="w-full">
                     <p className="text-[10px] font-bold mb-2 uppercase tracking-wider font-poppins text-amber-500">Contact Numbers</p>
-                    <a href={`tel:${SITE_DATA.phone}`} className="block text-lg lg:text-xl font-light hover:text-white transition-colors font-poppins text-white/90 w-full mb-1">{SITE_DATA.phone}</a>
-                    <a href={`tel:${SITE_DATA.altPhone}`} className="block text-lg lg:text-xl font-light hover:text-white transition-colors font-poppins text-white/90 w-full">{SITE_DATA.altPhone}</a>
+                    <a href={`tel:${SITE_DATA.phone}`} className="block text-base lg:text-lg font-light hover:text-white transition-colors font-poppins text-white/90 w-full mb-1">{SITE_DATA.phone}</a>
+                    <a href={`tel:${SITE_DATA.altPhone}`} className="block text-base lg:text-lg font-light hover:text-white transition-colors font-poppins text-white/90 w-full">{SITE_DATA.altPhone}</a>
                   </div>
                 </div>
                 <div className="flex items-start gap-6 w-full">
                   <div className="p-4 bg-white/10 rounded-2xl shrink-0 backdrop-blur-md border border-white/10"><Mail size={24} className="text-white"/></div>
                   <div className="w-full">
                     <p className="text-[10px] font-bold mb-2 uppercase tracking-wider font-poppins text-amber-500">Email Address</p>
-                    <a href={`mailto:${SITE_DATA.email}`} className="block text-base lg:text-lg font-light hover:text-white transition-colors font-poppins text-white/90 w-full mb-1">{SITE_DATA.email}</a>
-                    <a href={`mailto:${SITE_DATA.salesEmail}`} className="block text-base lg:text-lg font-light hover:text-white transition-colors font-poppins text-white/90 w-full">{SITE_DATA.salesEmail}</a>
+                    <a href={`mailto:${SITE_DATA.email}`} className="block text-sm lg:text-base font-light hover:text-white transition-colors font-poppins text-white/90 w-full mb-1">{SITE_DATA.email}</a>
+                    <a href={`mailto:${SITE_DATA.salesEmail}`} className="block text-sm lg:text-base font-light hover:text-white transition-colors font-poppins text-white/90 w-full">{SITE_DATA.salesEmail}</a>
                   </div>
                 </div>
               </div>
@@ -1537,14 +1534,14 @@ const LandingView = () => {
             <h1 className="text-4xl md:text-5xl lg:text-[4rem] font-light font-poppins leading-[1.1] tracking-tight text-[#022c22] mb-6">
               Request Project <br/> <span className="font-medium italic text-amber-500">Documentation.</span>
             </h1>
-            <p className="text-stone-600 font-light text-lg md:text-xl leading-relaxed mb-12 font-poppins">
+            <p className="text-stone-600 font-light text-sm md:text-base leading-relaxed mb-12 font-poppins">
               Submit your details to receive available layouts, NA orders, and project documents for review.
             </p>
             
             <form className="flex flex-col gap-6" onSubmit={(e) => e.preventDefault()}>
-              <input type="text" required className="w-full bg-[#fbf8ef] border border-stone-200/60 rounded-xl py-5 px-6 text-base focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all font-poppins shadow-sm" placeholder="Full Name" />
-              <input type="email" required className="w-full bg-[#fbf8ef] border border-stone-200/60 rounded-xl py-5 px-6 text-base focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all font-poppins shadow-sm" placeholder="Email Address" />
-              <input type="tel" required className="w-full bg-[#fbf8ef] border border-stone-200/60 rounded-xl py-5 px-6 text-base focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all font-poppins shadow-sm" placeholder="Mobile Number" />
+              <input type="text" required className="w-full bg-[#fbf8ef] border border-stone-200/60 rounded-xl py-5 px-6 text-sm focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all font-poppins shadow-sm" placeholder="Full Name" />
+              <input type="email" required className="w-full bg-[#fbf8ef] border border-stone-200/60 rounded-xl py-5 px-6 text-sm focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all font-poppins shadow-sm" placeholder="Email Address" />
+              <input type="tel" required className="w-full bg-[#fbf8ef] border border-stone-200/60 rounded-xl py-5 px-6 text-sm focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all font-poppins shadow-sm" placeholder="Mobile Number" />
               <button type="submit" className="w-full bg-[#022c22] hover:bg-amber-500 hover:text-[#022c22] text-white py-5 text-sm font-bold tracking-widest uppercase rounded-xl transition-all duration-300 shadow-xl flex justify-center items-center gap-3 mt-4 font-poppins">
                 Request Information <ArrowRight size={18} />
               </button>
