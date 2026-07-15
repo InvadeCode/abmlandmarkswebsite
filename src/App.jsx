@@ -62,8 +62,8 @@ const FontStyles = () => (
     /* Universal Strict 3% Horizontal Padding Site Container */
     .site-container {
       width: 100%;
-      padding-left: 3vw;
-      padding-right: 3vw;
+      padding-left: max(3vw, 20px);
+      padding-right: max(3vw, 20px);
       margin-left: auto;
       margin-right: auto;
     }
@@ -100,6 +100,11 @@ const FontStyles = () => (
     ::-webkit-scrollbar-thumb:hover { background: var(--color-gold-accent); }
 
     .no-scroll { overflow: hidden; }
+
+    .masonry-grid { column-count: 1; column-gap: 1.5rem; }
+    @media (min-width: 768px) { .masonry-grid { column-count: 2; } }
+    @media (min-width: 1024px) { .masonry-grid { column-count: 3; } }
+    .masonry-item { break-inside: avoid; margin-bottom: 1.5rem; display: inline-block; width: 100%; height: auto; }
   `}</style>
 );
 
@@ -126,6 +131,13 @@ const SITE_DATA = {
   ]
 };
 
+const TRUST_PILLARS = [
+  { label: "Thoughtfully Selected Locations", icon: MapPin },
+  { label: "Documentation-Focused Approach", icon: FileText },
+  { label: "Planned Infrastructure", icon: Ruler },
+  { label: "Client Assistance", icon: HeartHandshake }
+];
+
 const PROJECTS = [
   {
     id: "vintage-park-devale",
@@ -141,6 +153,7 @@ const PROJECTS = [
       "PMRDA-sanctioned NA bungalow plots"
     ],
     description: "Vintage Park is an ongoing plotted development at Devale near Lonavala, offering PMRDA-sanctioned NA bungalow plots in a peaceful natural setting.",
+    amenities: [],
     mapUrl: null,
     images: [],
     documents: []
@@ -152,14 +165,23 @@ const PROJECTS = [
     status: "Under Development",
     type: "Residential Plotted Development",
     surveyNumber: "Gat No. 386, Part",
-    area: "9,200 sq. m",
-    plotSizes: null,
+    area: "2.5 Acres",
+    plotSizes: "1079 sq.ft. to 2200 sq.ft.",
     price: null,
     approvals: [
       "PMRDA Tentative Layout Approval",
       "NA Residential-Use Order"
     ],
-    description: "Located at Godumbre in Maval, behind Lodha Belmondo, this residential plotted development covers approximately 9,200 sq. m. The site is currently under development, with internal concrete roads, boundary infrastructure and plot-development work visible on site. Supporting project documents include the NA residential-use order, PMRDA tentative layout approval and project layout plan.",
+    description: "This thoughtfully planned plotted development is set in the serene Godumbare–Kasarsai belt of Pune West, a fast-emerging residential corridor close to Hinjewadi yet surrounded by hills, greenery, and open landscapes.\n\nSpread across a 2.5-acre land parcel, the project offers well-planned NA residential plots designed for peaceful living, long-term investment, and future growth.\n\nLocated at Godumbre in Maval, behind Lodha Belmondo, the site is currently under development, with internal concrete roads, boundary infrastructure and plot-development work visible on site. Supporting project documents include the NA residential-use order, PMRDA tentative layout approval and project layout plan.",
+    amenities: [
+      "Landscaped open green spaces",
+      "Dedicated children’s play area",
+      "Walking tracks & sit-out zones",
+      "Well-lit internal roads with street lighting",
+      "Gated & secured community environment",
+      "Provision for future common amenities",
+      "Clubhouse for community gatherings"
+    ],
     mapUrl: "https://maps.app.goo.gl/placeholder", 
     images: [
       { url: "https://static.wixstatic.com/media/548938_15720859359641b7bf10141c10ab9dbf~mv2.jpeg", caption: "Current internal-road development" },
@@ -173,17 +195,17 @@ const PROJECTS = [
       {
         title: "PMRDA Tentative Layout Approval",
         desc: "Tentative residential layout approval issued for the proposed development at Gat No. 386, Godumbre.",
-        file: "/documents/godumbre-pmrda-tentative-approval.pdf"
+        file: "https://5489382d-e5dd-44ec-a4eb-680874f5cf71.usrfiles.com/ugd/548938_96d1633c60b84a45905c003e3f267688.pdf"
       },
       {
         title: "Project Layout Plan",
         desc: "Proposed residential plotting layout showing roads, plots, open spaces and development planning.",
-        file: "/documents/godumbre-layout-plan.pdf"
+        file: "https://5489382d-e5dd-44ec-a4eb-680874f5cf71.usrfiles.com/ugd/548938_4b0b0fdeefb64c529b167c5826dec8b2.pdf"
       },
       {
         title: "NA Residential-Use Order",
         desc: "Order relating to the conversion and permitted residential use of the project land.",
-        file: "/documents/godumbre-na-order.pdf"
+        file: "https://5489382d-e5dd-44ec-a4eb-680874f5cf71.usrfiles.com/ugd/548938_707de30010d5406eaf1c4bbe8a6dbc4a.pdf"
       }
     ]
   },
@@ -201,38 +223,37 @@ const PROJECTS = [
       "Clear Title NA Plots"
     ],
     description: "An exclusive pre-launch opportunity featuring clear title NA plots in one of Pune's fastest-growing investment destinations. The development offers excellent appreciation potential, a range of plot sizes from 1,300 to 4,000 sq.ft., and is set amidst peaceful natural surroundings with great road connectivity.",
+    amenities: [
+      "Clear Title NA Plots",
+      "Excellent Appreciation Potential",
+      "Ideal for Investment & Future Home",
+      "Peaceful Nature Surroundings",
+      "Great Road Connectivity"
+    ],
     mapUrl: null,
     images: [], 
     documents: []
   }
 ];
 
-const PACKAGES = [
-  { id: 'basic', name: 'The Curated Parcel', target: 'The Prudent Investor', desc: 'Secure a piece of the earth with thorough documentation. We provide carefully selected, NA-sanctioned plots complete with foundational infrastructure, offering a clear path to ownership protected by our rigorous legal protocols.', features: ['Thorough Title Search', 'Demarcated Boundaries', 'Internal Access Roads', 'Essential Utilities Integration'], image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2832&auto=format&fit=crop' },
-  { id: 'custom', name: 'The Bespoke Retreat', target: 'The Visionary Creator', desc: 'Beyond land acquisition, our architectural partners and project managers work alongside you to design and construct a customized, climate-responsive farmhouse that honors the local landscape and complies with all local zoning regulations.', features: ['Architectural Consultation', 'Construction Management', 'Native Landscaping', 'Regulatory Adherence'], image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2940&auto=format&fit=crop' },
-  { id: 'luxury', name: 'The Turnkey Legacy', target: 'The Discerning Heir', desc: 'A seamless transition into estate ownership. We curate acreage parcels and deliver a fully realized luxury villa with premium amenities. Experience managed estate living designed for the long term.', features: ['Premium Acreage Selection', 'Smart Home Integration', 'Private Pool & Pavilion', 'Estate Management Services'], image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2950&auto=format&fit=crop' }
-];
-
 const FAQS = [
-  { q: "What is your process for verifying land titles?", a: "Before ABM Landmarks offers a project, our legal team conducts an exhaustive search report. We review historical records, encumbrances, and secure necessary PMRDA or Collector sanctions, ensuring full compliance and providing our buyers with clear, marketable titles." },
-  { q: "Is bank financing available for plotted developments?", a: "Yes. Because our projects maintain clear legal documentation and proper NA sanctions, they are typically eligible for plot loans by major financial institutions. Our team can guide you through the required documentation." },
-  { q: "Can ABM handle the construction of my farmhouse?", a: "Absolutely. Through our specialized construction management programs, we can oversee architectural design, local zoning compliance, and construction, simplifying the process of building your custom estate." },
-  { q: "Why focus on the Maval and Lonavala corridors?", a: "These regions offer a rare combination of scenic natural topography and steady infrastructure development. Proximity to major highways and city centers makes these corridors highly strategic for long-term real estate acquisition." }
+  { q: "What projects are currently available?", a: "ABM Landmarks currently presents Vintage Park at Devale and the Godumbre Plotted Development in Maval." },
+  { q: "Can I visit the project sites?", a: "Yes. Interested buyers can contact the ABM Landmarks team to request a guided site visit." },
+  { q: "What information is available for the Godumbre project?", a: "The project page includes current site photographs, the supplied map location, the PMRDA tentative layout document, the project layout plan and the NA residential-use order." },
+  { q: "Is the Godumbre layout finally approved?", a: "The supplied PMRDA document is described as a tentative layout approval. It must not be presented as a final layout approval unless a separate final approval document is provided." },
+  { q: "Are prices displayed online?", a: "Pricing and availability should be confirmed directly with the ABM Landmarks team." },
+  { q: "Can buyers review documents before proceeding?", a: "Available project documents can be accessed from the relevant project page for general reference. Independent legal review is recommended before a purchase decision." }
 ];
 
 const INSIGHTS = [
-  { id: '1', title: 'The Anatomy of a Clean Title: What Every Buyer Should Review', category: 'Legal Security', date: 'Oct 12, 2026', image: 'https://static.wixstatic.com/media/74639d_0968ba7da89c4946bbc29448158e784f~mv2.jpeg', summary: 'Understanding the 7/12 extract, the importance of a detailed search report, and why a PMRDA sanction is critical for your investment.' },
-  { id: '2', title: 'Infrastructure and Accessibility: Evaluating Land Potential', category: 'Market Intelligence', date: 'Sep 28, 2026', image: 'https://static.wixstatic.com/media/74639d_e89d2be00e5d452eae6c69a88fe3f2e4~mv2.jpeg', summary: 'An analysis into how road connectivity and regional development plans play a pivotal role in the long-term value of land assets.' },
-  { id: '3', title: 'Architecture that Breathes: The Modern Indian Farmhouse', category: 'Design & Living', date: 'Sep 15, 2026', image: 'https://static.wixstatic.com/media/74639d_b99afb0223014c35b4f98bbffa2eca32~mv2.jpeg', summary: 'Exploring climate-responsive design, native forestry integration, and how modern luxury can be harmonized with vernacular building practices.' }
+  { id: '1', title: 'What to Review in a 7/12 Extract', category: 'Educational', date: 'Coming Soon', image: 'https://static.wixstatic.com/media/74639d_0968ba7da89c4946bbc29448158e784f~mv2.jpeg', summary: 'Understanding the basic components of the 7/12 extract and why it is the fundamental document for any land transaction.' },
+  { id: '2', title: 'Understanding NA Land-Use Orders', category: 'Compliance', date: 'Coming Soon', image: 'https://static.wixstatic.com/media/74639d_e89d2be00e5d452eae6c69a88fe3f2e4~mv2.jpeg', summary: 'A guide to Non-Agricultural (NA) orders, their significance, and how they define permitted use cases for acquired land.' },
+  { id: '3', title: 'Tentative and Final Layout Approvals Explained', category: 'Planning', date: 'Coming Soon', image: 'https://static.wixstatic.com/media/74639d_b99afb0223014c35b4f98bbffa2eca32~mv2.jpeg', summary: 'Exploring the difference between tentative and final layouts issued by authorities like PMRDA and what it means for infrastructure development.' }
 ];
 
 const cardVariants = {
   hidden: { opacity: 0, y: 30 },
-  visible: (idx) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, delay: idx * 0.1, ease: "easeOut" } 
-  })
+  visible: (idx) => ({ opacity: 1, y: 0, transition: { duration: 0.8, delay: idx * 0.1, ease: "easeOut" } })
 };
 
 const SectionHeader = ({ eyebrow, titleFirst, titleItalic, description, actionText, onAction, isDarkBg = false }) => (
@@ -242,7 +263,6 @@ const SectionHeader = ({ eyebrow, titleFirst, titleItalic, description, actionTe
         <div className="h-[2px] w-12 bg-amber-500"></div>
         <span className={`font-semibold tracking-widest text-[10px] uppercase font-poppins ${isDarkBg ? 'text-amber-500' : 'text-amber-600'}`}>{eyebrow}</span>
       </div>
-      {/* PERFECTLY ALIGNED H2 */}
       <h2 className={`text-4xl md:text-5xl lg:text-[4rem] font-light font-poppins leading-[1.1] tracking-tight ${isDarkBg ? 'text-white' : 'text-stone-900'}`}>
         {titleFirst} <br className="hidden md:block"/>
         <span className={`font-medium italic ${isDarkBg ? 'text-white/90' : 'text-[#022c22]'}`}>{titleItalic}</span>
@@ -316,7 +336,7 @@ const CustomDropdown = ({ label, value, options, onChange, placeholder }) => {
               {options.map(opt => (
                 <div 
                   key={opt.value} 
-                  className="px-4 py-3 text-sm text-stone-300 font-poppins hover:bg-[#fbf8ef]/10 hover:text-white cursor-pointer transition-colors"
+                  className="px-4 py-3 text-sm text-stone-300 font-poppins hover:bg-white/10 hover:text-white cursor-pointer transition-colors"
                   onClick={() => { onChange(opt.value); setIsOpen(false); }}
                 >
                   {opt.label}
@@ -384,10 +404,10 @@ const SearchOverlay = ({ isOpen, onClose, navigate }) => {
       {isOpen && (
         <motion.div 
           initial={{ opacity: 0, backdropFilter: "blur(0px)" }} animate={{ opacity: 1, backdropFilter: "blur(24px)" }} exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
-          className="fixed inset-0 z-[100] bg-[#022c22]/95 flex flex-col px-[3vw] py-[3vw]"
+          className="fixed inset-0 z-[100] bg-[#022c22]/95 flex flex-col px-[max(3vw,20px)] py-[max(3vw,20px)]"
         >
           <div className="flex justify-end pt-4">
-            <button onClick={onClose} className="p-4 bg-[#fbf8ef]/10 hover:bg-[#fbf8ef]/20 rounded-full transition-colors text-white border border-white/20">
+            <button onClick={onClose} className="p-4 bg-white/10 hover:bg-white/20 rounded-full transition-colors text-white border border-white/20">
               <X size={24} />
             </button>
           </div>
@@ -407,7 +427,7 @@ const SearchOverlay = ({ isOpen, onClose, navigate }) => {
                   <h3 className="text-amber-500 uppercase tracking-widest text-xs font-semibold mb-6 flex items-center gap-2 font-poppins"><MapPin size={14}/> Verified Landmarks</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {results.projects.map(p => (
-                      <div key={p.id} onClick={() => { navigate(`project/${p.id}`); onClose(); }} className="cursor-pointer p-6 bg-white/5 border border-white/10 hover:bg-[#fbf8ef]/10 rounded-xl transition-all">
+                      <div key={p.id} onClick={() => { navigate(`project/${p.id}`); onClose(); }} className="cursor-pointer p-6 bg-white/5 border border-white/10 hover:bg-white/10 rounded-xl transition-all">
                         <h4 className="text-xl font-medium text-white mb-2 font-poppins">{p.title}</h4>
                         <p className="text-stone-400 text-xs font-poppins">{p.location}</p>
                       </div>
@@ -594,8 +614,7 @@ const HeroSection = () => {
               <div className="w-full px-6 py-4 lg:py-2 h-[70px] lg:h-[60px] flex items-center">
                 <CustomDropdown label="Select Corridor" placeholder="Filter by Region" value={region} onChange={setRegion} options={[
                   {label: 'Devale / Lonavala', value: 'devale'}, 
-                  {label: 'Godumbre / Maval', value: 'godumbre'},
-                  {label: 'Kasarsai / Pawana', value: 'kasarsai'}
+                  {label: 'Godumbre / Maval', value: 'godumbre'}
                 ]} />
               </div>
             </div>
@@ -609,37 +628,6 @@ const HeroSection = () => {
     </section>
   );
 };
-
-const PageHero = ({ eyebrow, titleFirst, titleItalic, description, image, video }) => (
-  <section className="sticky top-0 z-0 w-full px-[max(3vw,20px)] pb-[max(3vw,20px)] flex flex-col" style={{ height: '100svh', minHeight: '100svh', paddingTop: 'calc(var(--header-height) + 12px)' }}>
-    <div className="relative w-full h-full rounded-[2.5rem] bg-[#022c22] overflow-hidden flex flex-col justify-end pb-12 lg:pb-24 px-[4vw] lg:px-[5vw] shadow-2xl">
-      {video ? (
-        <video src={video} autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-screen" />
-      ) : (
-        <motion.img 
-          initial={{ scale: 1 }} animate={{ scale: 1.15 }} transition={{ duration: 25, ease: "linear", repeat: Infinity, repeatType: "reverse" }}
-          src={image} alt={titleFirst} className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-screen" 
-        />
-      )}
-      
-      <div className="absolute inset-0 bg-gradient-to-r from-[#022c22]/90 via-[#022c22]/30 to-transparent pointer-events-none"></div>
-      <div className="absolute inset-0 bg-gradient-to-t from-[#022c22]/90 via-[#022c22]/10 to-transparent opacity-90 pointer-events-none"></div>
-      
-      <div className="relative z-10 w-full max-w-5xl">
-         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}>
-           <div className="flex items-center gap-4 mb-4 lg:mb-6">
-             <div className="h-[2px] w-8 md:w-12 bg-amber-500"></div>
-             <span className="text-amber-500 uppercase tracking-widest text-[10px] md:text-xs font-semibold font-poppins">{eyebrow}</span>
-           </div>
-           <h1 className="text-4xl md:text-5xl lg:text-[5rem] font-light font-poppins leading-[1.1] tracking-tight text-white mb-6">
-             {titleFirst} <br className="hidden md:block"/><span className="italic font-medium text-white/90">{titleItalic}</span>
-           </h1>
-           {description && <p className="text-base md:text-lg lg:text-xl text-white/80 font-light max-w-2xl leading-relaxed font-poppins">{description}</p>}
-         </motion.div>
-      </div>
-    </div>
-  </section>
-);
 
 const TrustSection = () => (
   <section className="py-12 lg:py-16">
@@ -657,9 +645,16 @@ const TrustSection = () => (
 const AboutSection = ({ navigate }) => (
   <section className="section-spacing">
     <div className="site-container">
-      <SectionHeader eyebrow="The ABM Promise" titleFirst="A Foundation of" titleItalic="Clarity." />
       <div className="flex flex-col lg:flex-row justify-between gap-16 lg:gap-24 items-stretch w-full">
         <div className="lg:w-1/2 w-full pr-0 lg:pr-8 flex flex-col justify-center">
+          <div className="flex items-center gap-4 mb-6">
+            <div className="h-[2px] w-12 bg-amber-500"></div>
+            <span className="font-semibold tracking-widest text-[10px] uppercase font-poppins text-amber-600">The ABM Promise</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl lg:text-[4rem] font-light font-poppins leading-[1.1] tracking-tight text-stone-900 mb-10">
+            A Foundation of <br className="hidden md:block"/>
+            <span className="font-medium italic text-[#022c22]">Clarity.</span>
+          </h2>
           <p className="text-stone-600 text-base md:text-lg font-light leading-relaxed mb-6 font-poppins w-full">
             ABM Landmarks focuses on mitigating the common complexities associated with real estate acquisition. We carefully identify and develop land parcels in strategic corridors, emphasizing rigorous documentation and regulatory compliance.
           </p>
@@ -669,7 +664,7 @@ const AboutSection = ({ navigate }) => (
           <button onClick={() => { navigate('about'); window.scrollTo(0,0); }} className="text-[#022c22] font-semibold text-xs uppercase tracking-widest flex items-center gap-3 hover:text-amber-600 transition-colors font-poppins group mt-auto pt-6">Explore Our Philosophy <ArrowRight size={16} className="transform transition-transform group-hover:translate-x-1" /></button>
         </div>
         <div className="lg:w-1/2 w-full relative">
-          <div className="w-full h-full min-h-[400px] overflow-hidden rounded-[2rem] relative shadow-2xl">
+          <div className="w-full h-full overflow-hidden rounded-[2.5rem] relative shadow-2xl">
             <div className="absolute inset-0 bg-[#022c22]/40 mix-blend-multiply z-10 pointer-events-none"></div>
             <div className="absolute inset-0 bg-gradient-to-t from-[#022c22]/90 via-transparent to-transparent z-10 pointer-events-none opacity-80"></div>
             <motion.img animate={{ scale: [1, 1.15, 1] }} transition={{ duration: 25, repeat: Infinity, ease: "linear" }} src="https://static.wixstatic.com/media/74639d_656298cd109b43c2b383f609a2175873~mv2.jpeg" alt="ABM Landmarks Architectural Philosophy" className="w-full h-full object-cover absolute inset-0" />
@@ -705,12 +700,12 @@ const ProcessSection = ({ navigate }) => (
 const FeaturedProjects = ({ navigate }) => (
   <section id="featured-projects" className="section-spacing">
     <div className="site-container">
-      <SectionHeader eyebrow="Current Developments" titleFirst="Explore Our" titleItalic="Current Developments." description="Explore ABM Landmarks’ current plotted developments across Devale, Godumbre and Kasarsai." actionText="View All Landmarks" onAction={() => { navigate('projects'); window.scrollTo(0,0); }} />
+      <SectionHeader eyebrow="Current Developments" titleFirst="Explore Our" titleItalic="Current Developments." description="Explore ABM Landmarks’ current plotted developments across Devale and Godumbre." actionText="View All Landmarks" onAction={() => { navigate('projects'); window.scrollTo(0,0); }} />
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mt-12">
-        {PROJECTS.slice(0, 2).map((project, idx) => (
+        {PROJECTS.filter(p => p.id !== 'kasarsai-pawana-road').map((project, idx) => (
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} custom={idx} variants={cardVariants} key={project.id} 
                       onClick={() => { navigate(`project/${project.id}`); window.scrollTo(0,0); }}
-                      className="group cursor-pointer bg-[#fbf8ef] rounded-[2rem] overflow-hidden shadow-md hover:shadow-2xl transition-all duration-700 border border-stone-200 flex flex-col">
+                      className="group cursor-pointer bg-[#fbf8ef] rounded-[2.5rem] overflow-hidden shadow-md hover:shadow-2xl transition-all duration-700 border border-stone-200 flex flex-col">
             <div className="relative h-[300px] lg:h-[400px] overflow-hidden w-full shrink-0 bg-[#f4efe1] flex items-center justify-center">
               <div className="absolute top-6 left-6 z-20 flex gap-3 flex-wrap pr-4">
                 <span className="bg-[#022c22]/95 backdrop-blur-md text-white text-[10px] font-semibold px-4 py-2 rounded-lg uppercase tracking-widest font-poppins shadow-sm">{project.status}</span>
@@ -741,7 +736,7 @@ const FeaturedProjects = ({ navigate }) => (
   </section>
 );
 
-const GallerySection = ({ navigate }) => {
+const ProjectProgressGallery = ({ navigate }) => {
   const photos = PROJECTS.find(p => p.id === "godumbre-plotted-development")?.images || [];
   
   return (
@@ -827,12 +822,7 @@ const FAQSection = () => {
           </h2>
         </div>
         <div className="lg:w-3/5 w-full flex flex-col gap-4">
-          {[
-            { q: "What projects are currently available?", a: "ABM Landmarks currently presents Vintage Park at Devale and the Godumbre Plotted Development in Maval." },
-            { q: "Can I visit the project sites?", a: "Yes. Interested buyers can contact the ABM Landmarks team to request a guided site visit." },
-            { q: "What information is available for the Godumbre project?", a: "The project page includes current site photographs, the supplied map location, the PMRDA tentative layout document, the project layout plan and the NA residential-use order." },
-            { q: "Is the Godumbre layout finally approved?", a: "The supplied PMRDA document is described as a tentative layout approval. It must not be presented as a final layout approval unless a separate final approval document is provided." }
-          ].map((faq, idx) => (
+          {FAQS.map((faq, idx) => (
             <div key={idx} className="bg-[#fbf8ef] rounded-2xl border border-stone-200 overflow-hidden transition-all duration-300 w-full shadow-sm hover:shadow-md">
               <button onClick={() => setOpenIdx(openIdx === idx ? -1 : idx)} className="w-full px-8 py-6 flex justify-between items-center text-left focus:outline-none">
                 <span className={`font-medium pr-8 font-poppins text-sm md:text-base ${openIdx === idx ? 'text-[#022c22]' : 'text-stone-800'}`}>{faq.q}</span>
@@ -859,11 +849,7 @@ const InsightsPreview = ({ navigate }) => (
         <SectionHeader eyebrow="Land Insights" titleFirst="Understand the" titleItalic="details that matter." actionText="Read All Articles" onAction={() => { navigate('insights'); window.scrollTo(0,0); }}/>
         
         <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-           {[
-             { title: 'What to Review in a 7/12 Extract', category: 'Educational', date: 'Coming Soon', image: 'https://static.wixstatic.com/media/74639d_0968ba7da89c4946bbc29448158e784f~mv2.jpeg', summary: 'Understanding the basic components of the 7/12 extract and why it is the fundamental document for any land transaction.' },
-             { title: 'Understanding NA Land-Use Orders', category: 'Compliance', date: 'Coming Soon', image: 'https://static.wixstatic.com/media/74639d_e89d2be00e5d452eae6c69a88fe3f2e4~mv2.jpeg', summary: 'A guide to Non-Agricultural (NA) orders, their significance, and how they define permitted use cases for acquired land.' },
-             { title: 'Tentative and Final Layout Approvals Explained', category: 'Planning', date: 'Coming Soon', image: 'https://static.wixstatic.com/media/74639d_b99afb0223014c35b4f98bbffa2eca32~mv2.jpeg', summary: 'Exploring the difference between tentative and final layouts issued by authorities like PMRDA and what it means for infrastructure development.' }
-           ].map((insight, idx) => (
+           {INSIGHTS.map((insight, idx) => (
              <div key={idx} className="bg-[#fbf8ef] border border-stone-200 rounded-[2rem] overflow-hidden shadow-sm flex flex-col h-full">
                 <div className="w-full h-48 bg-[#f4efe1] relative shrink-0">
                    <img src={insight.image} alt={insight.title} className="w-full h-full object-cover" />
@@ -871,7 +857,7 @@ const InsightsPreview = ({ navigate }) => (
                 </div>
                 <div className="p-8 flex flex-col flex-grow w-full">
                    <span className="text-stone-400 text-[10px] font-semibold tracking-widest uppercase mb-3 block font-poppins">{insight.date}</span>
-                   <h3 className="text-3xl lg:text-[2.5rem] font-light font-poppins leading-[1.1] tracking-tight text-stone-900 mb-4 w-full">{insight.title}</h3>
+                   <h3 className="text-2xl lg:text-[2rem] font-light font-poppins leading-[1.2] tracking-tight text-stone-900 mb-4 w-full">{insight.title}</h3>
                    <p className="text-stone-600 text-sm font-light leading-relaxed mb-6 flex-grow font-poppins w-full">{insight.summary}</p>
                    <button onClick={() => { navigate('insights'); window.scrollTo(0,0); }} className="text-[#022c22] font-semibold text-[10px] md:text-xs uppercase tracking-widest flex items-center gap-2 hover:text-amber-600 transition-colors font-poppins mt-auto w-fit">Read More <ArrowRight size={16} /></button>
                 </div>
@@ -890,11 +876,11 @@ const PreFooter = ({ navigate }) => (
       <div className="absolute inset-0 bg-gradient-to-t from-[#022c22] to-transparent z-20 pointer-events-none"></div>
       
       <div className="relative z-30 flex flex-col items-center max-w-3xl w-full mx-auto">
-        <h2 className="text-4xl md:text-5xl lg:text-[4rem] font-light font-poppins leading-[1.1] tracking-tight text-white mb-8">Ready to Secure <br className="hidden md:block"/><span className="font-medium italic">Your Legacy?</span></h2>
-        <p className="text-white/80 font-light mb-12 max-w-xl text-base md:text-lg font-poppins leading-relaxed">Connect directly with our acquisition partners to request a verified legal dossier or schedule a private site viewing.</p>
+        <h2 className="text-4xl md:text-5xl lg:text-[4rem] font-light font-poppins leading-[1.1] tracking-tight text-white mb-8">Understand the project <br className="hidden md:block"/><span className="font-medium italic text-amber-500">before making the decision.</span></h2>
+        <p className="text-white/80 font-light mb-12 max-w-xl text-base md:text-lg font-poppins leading-relaxed">Explore the location, current development and available documents, or speak with the ABM Landmarks team to schedule a site visit.</p>
         <div className="flex flex-col sm:flex-row justify-center gap-6 w-full sm:w-auto">
-          <button onClick={() => { navigate('projects'); window.scrollTo(0,0); }} className="bg-amber-500 hover:bg-amber-400 text-[#022c22] px-10 py-5 rounded-xl font-bold tracking-widest uppercase transition-colors text-xs flex items-center justify-center gap-3 font-poppins shadow-xl"><FileText size={18} /> View Projects</button>
-          <a href={`tel:${SITE_DATA.phone}`} className="bg-[#fbf8ef]/10 hover:bg-[#fbf8ef]/20 backdrop-blur-md border border-[#fbf8ef]/20 text-white px-10 py-5 rounded-xl font-bold tracking-widest uppercase transition-colors text-xs flex items-center justify-center gap-3 font-poppins"><Phone size={18} /> Call Advisor</a>
+          <button onClick={() => { navigate('projects'); window.scrollTo(0,0); }} className="bg-amber-500 hover:bg-amber-400 text-[#022c22] px-10 py-5 rounded-xl font-bold tracking-widest uppercase transition-colors text-xs flex items-center justify-center gap-3 font-poppins shadow-xl"><FileText size={18} /> View Current Projects</button>
+          <a href={`tel:${SITE_DATA.phone}`} className="bg-[#fbf8ef]/10 hover:bg-[#fbf8ef]/20 backdrop-blur-md border border-[#fbf8ef]/20 text-white px-10 py-5 rounded-xl font-bold tracking-widest uppercase transition-colors text-xs flex items-center justify-center gap-3 font-poppins"><Phone size={18} /> Schedule a Site Visit</a>
         </div>
       </div>
     </div>
@@ -942,6 +928,37 @@ const Footer = ({ navigate }) => (
       <p className="text-white/50 text-xs font-poppins text-center md:text-left">© {new Date().getFullYear()} {SITE_DATA.legalEntity}. All rights reserved.</p>
     </div>
   </footer>
+);
+
+const PageHero = ({ eyebrow, titleFirst, titleItalic, description, image, video }) => (
+  <section className="sticky top-0 z-0 w-full px-[max(3vw,20px)] pb-[max(3vw,20px)] flex flex-col" style={{ height: '100svh', minHeight: '100svh', paddingTop: 'calc(var(--header-height) + 12px)' }}>
+    <div className="relative w-full h-full rounded-[2.5rem] bg-[#022c22] overflow-hidden flex flex-col justify-end pb-12 lg:pb-24 px-[4vw] lg:px-[5vw] shadow-2xl">
+      {video ? (
+        <video src={video} autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-screen" />
+      ) : (
+        <motion.img 
+          initial={{ scale: 1 }} animate={{ scale: 1.15 }} transition={{ duration: 25, ease: "linear", repeat: Infinity, repeatType: "reverse" }}
+          src={image} alt={titleFirst} className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-screen" 
+        />
+      )}
+      
+      <div className="absolute inset-0 bg-gradient-to-r from-[#022c22]/90 via-[#022c22]/30 to-transparent pointer-events-none"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-[#022c22]/90 via-[#022c22]/10 to-transparent opacity-90 pointer-events-none"></div>
+      
+      <div className="relative z-10 w-full max-w-5xl">
+         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}>
+           <div className="flex items-center gap-4 mb-4 lg:mb-6">
+             <div className="h-[2px] w-8 md:w-12 bg-amber-500"></div>
+             <span className="text-amber-500 uppercase tracking-widest text-[10px] md:text-xs font-semibold font-poppins">{eyebrow}</span>
+           </div>
+           <h1 className="text-4xl md:text-5xl lg:text-[5rem] font-light font-poppins leading-[1.1] tracking-tight text-white mb-6">
+             {titleFirst} <br className="hidden md:block"/><span className="italic font-medium text-white/90">{titleItalic}</span>
+           </h1>
+           {description && <p className="text-base md:text-lg lg:text-xl text-white/80 font-light max-w-2xl leading-relaxed font-poppins">{description}</p>}
+         </motion.div>
+      </div>
+    </div>
+  </section>
 );
 
 const AboutView = ({ navigate }) => {
@@ -1271,6 +1288,244 @@ const ProjectsView = ({ navigate }) => {
   );
 };
 
+const ProjectDetailView = ({ projectId, navigate }) => {
+  const project = PROJECTS.find(p => p.id === projectId);
+  
+  if (!project) {
+    return (
+      <div className="w-full min-h-screen flex items-center justify-center bg-[#faf8f2]">
+        <div className="text-center">
+          <h2 className="text-2xl font-poppins mb-4">Project Not Found</h2>
+          <button onClick={() => navigate('projects')} className="text-amber-600 font-poppins hover:underline">Return to Directory</button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="w-full flex flex-col bg-[#faf8f2]">
+       <section className="sticky top-0 z-0 w-full px-[max(3vw,20px)] pb-[max(3vw,20px)] flex flex-col" style={{ height: '100svh', minHeight: '100svh', paddingTop: 'calc(var(--header-height) + 12px)' }}>
+         <div className="relative w-full h-full rounded-[2.5rem] bg-[#022c22] overflow-hidden flex flex-col justify-end pb-12 lg:pb-24 px-[4vw] lg:px-[5vw] shadow-2xl">
+           {project.images && project.images.length > 0 ? (
+             <img src={project.images[0].url} alt={project.title} className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-screen" />
+           ) : (
+             <div className="absolute inset-0 w-full h-full bg-[#022c22] flex items-center justify-center"><Landmark size={64} className="text-white/10"/></div>
+           )}
+           <div className="absolute inset-0 bg-gradient-to-r from-[#022c22]/90 via-[#022c22]/30 to-transparent pointer-events-none"></div>
+           <div className="absolute inset-0 bg-gradient-to-t from-[#022c22]/90 via-[#022c22]/10 to-transparent opacity-90 pointer-events-none"></div>
+           
+           <div className="relative z-10 w-full max-w-5xl">
+             <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+               <div className="flex items-center gap-3 mb-4 lg:mb-6">
+                 <span className="bg-amber-500 text-[#022c22] px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-widest font-poppins">{project.status}</span>
+                 <span className="bg-white/20 backdrop-blur-md text-white px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-widest font-poppins border border-white/20">{project.type}</span>
+               </div>
+               <h1 className="text-4xl md:text-5xl lg:text-[5rem] font-light text-white mb-6 leading-[1.1] tracking-tight font-poppins">{project.title}</h1>
+               <p className="text-white/80 font-light flex items-center gap-2 font-poppins text-base md:text-lg lg:text-xl"><MapPin size={18}/> {project.location}</p>
+             </motion.div>
+           </div>
+         </div>
+       </section>
+
+       <section className="section-spacing z-10 relative bg-[#faf8f2]">
+         <div className="site-container flex flex-col lg:flex-row gap-12 lg:gap-24 items-start">
+           <div className="w-full lg:w-2/3">
+             <div className="mb-12 lg:mb-16">
+               <div className="flex items-center gap-4 mb-6">
+                 <div className="h-[2px] w-12 bg-amber-500"></div>
+                 <span className="text-amber-600 font-semibold tracking-widest text-[10px] uppercase font-poppins">Project Overview</span>
+               </div>
+               <h3 className="text-3xl lg:text-[2.5rem] font-light text-stone-900 mb-6 font-poppins leading-[1.1] tracking-tight">About the Development</h3>
+               <p className="text-stone-600 font-light leading-relaxed text-base lg:text-lg font-poppins whitespace-pre-line">{project.description}</p>
+             </div>
+             
+             {project.amenities && project.amenities.length > 0 && (
+               <div className="mb-12 lg:mb-16">
+                 <h3 className="text-2xl font-medium text-stone-900 mb-6 font-poppins flex items-center gap-3"><Trees size={24} className="text-amber-600"/> Lifestyle Amenities</h3>
+                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                   {project.amenities.map((amenity, i) => (
+                     <div key={i} className="flex items-start gap-3 text-sm lg:text-base text-stone-700 font-medium font-poppins bg-[#fbf8ef] p-5 rounded-xl border border-stone-200 shadow-sm w-full">
+                       <CheckCircle2 size={20} className="text-emerald-600 shrink-0 mt-0.5"/> {amenity}
+                     </div>
+                   ))}
+                 </div>
+               </div>
+             )}
+             
+             {project.images && project.images.length > 1 && (
+               <div className="mb-12 lg:mb-16">
+                 <h3 className="text-2xl font-medium text-stone-900 mb-6 font-poppins flex items-center gap-3"><Eye size={24} className="text-amber-600"/> Site Photographs</h3>
+                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                   {project.images.slice(1).map((img, i) => (
+                     <div key={i} className="flex flex-col gap-3 group">
+                       <div className="w-full aspect-[4/3] bg-[#fbf8ef] rounded-2xl overflow-hidden border border-stone-200 relative">
+                          <img src={img.url} alt={img.caption} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                       </div>
+                       <span className="text-[10px] text-stone-500 uppercase tracking-widest font-poppins">{img.caption}</span>
+                     </div>
+                   ))}
+                 </div>
+               </div>
+             )}
+
+             {project.documents && project.documents.length > 0 && (
+               <div className="mb-12 lg:mb-16">
+                 <h3 className="text-2xl font-medium text-stone-900 mb-6 font-poppins flex items-center gap-3"><FileText size={24} className="text-amber-600"/> Project Documents</h3>
+                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                   {project.documents.map((doc, i) => (
+                     <div key={i} className="bg-[#fbf8ef] border border-stone-200 p-8 rounded-[2rem] shadow-sm flex flex-col group hover:border-amber-500 transition-colors">
+                        <h4 className="text-lg font-medium text-stone-900 font-poppins mb-3">{doc.title}</h4>
+                        <p className="text-sm text-stone-600 font-poppins font-light leading-relaxed mb-8 flex-grow">{doc.desc}</p>
+                        <a href={doc.file} target="_blank" rel="noopener noreferrer" className="text-[10px] font-bold text-[#022c22] uppercase tracking-widest flex items-center gap-2 group-hover:text-amber-600 transition-colors bg-white px-4 py-3 rounded-lg border border-stone-200 w-fit">
+                          View Document <ExternalLink size={14}/>
+                        </a>
+                     </div>
+                   ))}
+                 </div>
+                 <div className="mt-6 p-6 bg-[#fbf8ef] rounded-[1.5rem] border border-stone-200 text-xs text-stone-500 font-poppins font-light leading-relaxed">
+                   <strong className="font-medium text-stone-700">Disclaimer:</strong> Documents are provided for general reference. Prospective purchasers should independently review all title, approval, planning and legal documentation before making a purchase decision.
+                 </div>
+               </div>
+             )}
+           </div>
+
+           <div className="w-full lg:w-1/3 sticky top-[calc(var(--header-height)+24px)]">
+             <div className="bg-[#fbf8ef] border border-stone-200 rounded-[2.5rem] p-8 lg:p-10 shadow-xl">
+               <h4 className="text-sm font-bold uppercase tracking-widest text-stone-900 mb-8 font-poppins border-b border-stone-200 pb-4">Fact File</h4>
+               <ul className="space-y-6 mb-10">
+                 {project.price && (
+                   <li>
+                     <span className="block text-[10px] uppercase tracking-widest text-stone-500 font-poppins mb-1 flex items-center gap-1"><IndianRupee size={12}/> Pricing</span>
+                     <span className="block text-lg font-medium text-stone-900 font-poppins">{project.price}</span>
+                   </li>
+                 )}
+                 {project.surveyNumber && (
+                   <li>
+                     <span className="block text-[10px] uppercase tracking-widest text-stone-500 font-poppins mb-1">Survey / Gat No.</span>
+                     <span className="block font-medium text-stone-900 font-poppins">{project.surveyNumber}</span>
+                   </li>
+                 )}
+                 {project.area && (
+                   <li>
+                     <span className="block text-[10px] uppercase tracking-widest text-stone-500 font-poppins mb-1">Total Area</span>
+                     <span className="block font-medium text-stone-900 font-poppins">{project.area}</span>
+                   </li>
+                 )}
+                 {project.plotSizes && (
+                   <li>
+                     <span className="block text-[10px] uppercase tracking-widest text-stone-500 font-poppins mb-1">Plot Sizes</span>
+                     <span className="block font-medium text-stone-900 font-poppins">{project.plotSizes}</span>
+                   </li>
+                 )}
+                 <li>
+                   <span className="block text-[10px] uppercase tracking-widest text-stone-500 font-poppins mb-2">Approvals & Status</span>
+                   <ul className="space-y-3">
+                     {project.approvals.map((app, i) => (
+                        <li key={i} className="flex items-start gap-2 text-sm text-stone-700 font-poppins font-medium">
+                          <CheckCircle2 size={18} className="text-emerald-600 shrink-0 mt-0.5"/> <span>{app}</span>
+                        </li>
+                     ))}
+                   </ul>
+                 </li>
+               </ul>
+
+               {project.mapUrl && (
+                  <a href={project.mapUrl} target="_blank" rel="noopener noreferrer" className="w-full mb-4 bg-white hover:bg-[#f4efe1] text-stone-900 border border-stone-200 py-4 rounded-xl font-bold tracking-widest uppercase transition-colors text-[10px] flex justify-center items-center gap-2 font-poppins">
+                    <MapPin size={14}/> View on Google Maps
+                  </a>
+               )}
+               
+               <button onClick={() => { navigate('contact'); window.scrollTo(0,0); }} className="w-full bg-[#022c22] hover:bg-amber-500 text-white hover:text-[#022c22] py-4 rounded-xl font-bold tracking-widest uppercase transition-colors text-[10px] flex justify-center items-center gap-2 font-poppins shadow-lg">
+                 Inquire About Project <ArrowRight size={14}/>
+               </button>
+             </div>
+           </div>
+         </div>
+       </section>
+    </div>
+  );
+};
+
+const ContactView = () => (
+  <div className="w-full flex flex-col">
+     <PageHero 
+      eyebrow="Advisory"
+      titleFirst="Command Your"
+      titleItalic="Future."
+      description="Connect directly with our team to request project documents, view layouts, or schedule a site visit."
+      video="https://video.wixstatic.com/video/74639d_739f44c51be74491bc529ed7f97d44b4/720p/mp4/file.mp4"
+    />
+    
+    <div className="relative z-10 w-full bg-[#faf8f2]">
+      <section className="section-spacing">
+        <div className="site-container grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 w-full">
+          
+          <div className="bg-[#fbf8ef] rounded-[2.5rem] p-8 md:p-14 shadow-2xl border border-stone-200 h-fit w-full">
+            <h3 className="text-4xl md:text-5xl font-light tracking-tight leading-[1.1] text-stone-900 mb-10 font-poppins">Request a <span className="font-medium italic">Consultation.</span></h3>
+            <form className="flex flex-col gap-6 w-full" onSubmit={(e) => e.preventDefault()}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+                <input type="text" required className="w-full bg-[#f4efe1] border border-stone-200 rounded-xl py-4 lg:py-5 px-6 text-sm md:text-base focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all placeholder:text-stone-400 font-poppins" placeholder="First Name" />
+                <input type="text" required className="w-full bg-[#f4efe1] border border-stone-200 rounded-xl py-4 lg:py-5 px-6 text-sm md:text-base focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all placeholder:text-stone-400 font-poppins" placeholder="Last Name" />
+              </div>
+              <input type="email" required className="w-full bg-[#f4efe1] border border-stone-200 rounded-xl py-4 lg:py-5 px-6 text-sm md:text-base focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all placeholder:text-stone-400 font-poppins" placeholder="Email Address" />
+              <input type="tel" required className="w-full bg-[#f4efe1] border border-stone-200 rounded-xl py-4 lg:py-5 px-6 text-sm md:text-base focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all placeholder:text-stone-400 font-poppins" placeholder="Phone Number" />
+              <select defaultValue="" required className="w-full bg-[#f4efe1] border border-stone-200 rounded-xl py-4 lg:py-5 px-6 text-sm md:text-base focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all text-stone-600 appearance-none cursor-pointer font-poppins">
+                <option value="" disabled>Subject of Inquiry...</option>
+                {PROJECTS.map(p => <option key={p.id} value={p.id}>Project: {p.title}</option>)}
+                <option value="custom">Bespoke Estate Services</option>
+                <option value="general">General Advisory</option>
+              </select>
+              <textarea required rows="4" className="w-full bg-[#f4efe1] border border-stone-200 rounded-xl py-4 lg:py-5 px-6 text-sm md:text-base focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all placeholder:text-stone-400 font-poppins resize-none" placeholder="Share your inquiry with us..."></textarea>
+              <button type="submit" className="w-full bg-[#022c22] hover:bg-amber-500 hover:text-[#022c22] text-white py-5 text-sm font-bold tracking-widest uppercase rounded-xl transition-all duration-300 shadow-xl flex justify-center items-center gap-3 mt-4 font-poppins">Submit Inquiry <ArrowRight size={18} /></button>
+            </form>
+          </div>
+
+          <div className="flex flex-col gap-8 h-full w-full">
+            <div className="w-full bg-[#022c22] text-white rounded-[2.5rem] p-10 lg:p-14 flex flex-col justify-center shadow-2xl relative overflow-hidden h-full">
+              <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none"><Landmark size={250} /></div>
+              <h4 className="text-amber-500 font-bold mb-12 uppercase tracking-widest text-xs font-poppins relative z-10 flex items-center gap-3"><div className="w-6 h-[2px] bg-amber-500"></div> Office Location</h4>
+              <div className="space-y-12 relative z-10 w-full">
+                <div className="flex items-start gap-6 w-full">
+                  <div className="p-4 bg-white/10 rounded-2xl shrink-0 backdrop-blur-md border border-white/10"><NavIcon size={24} className="text-white"/></div>
+                  <div className="w-full">
+                    <p className="text-[10px] font-bold mb-2 uppercase tracking-wider font-poppins text-amber-500">Address</p>
+                    <p className="text-base lg:text-lg font-light leading-relaxed font-poppins text-white/90 w-full">{SITE_DATA.address}</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-6 w-full">
+                  <div className="p-4 bg-white/10 rounded-2xl shrink-0 backdrop-blur-md border border-white/10"><Phone size={24} className="text-white"/></div>
+                  <div className="w-full">
+                    <p className="text-[10px] font-bold mb-2 uppercase tracking-wider font-poppins text-amber-500">Contact Numbers</p>
+                    <a href={`tel:${SITE_DATA.phone}`} className="block text-lg lg:text-xl font-light hover:text-white transition-colors font-poppins text-white/90 w-full mb-1">{SITE_DATA.phone}</a>
+                    <a href={`tel:${SITE_DATA.altPhone}`} className="block text-lg lg:text-xl font-light hover:text-white transition-colors font-poppins text-white/90 w-full">{SITE_DATA.altPhone}</a>
+                  </div>
+                </div>
+                <div className="flex items-start gap-6 w-full">
+                  <div className="p-4 bg-white/10 rounded-2xl shrink-0 backdrop-blur-md border border-white/10"><Mail size={24} className="text-white"/></div>
+                  <div className="w-full">
+                    <p className="text-[10px] font-bold mb-2 uppercase tracking-wider font-poppins text-amber-500">Email Address</p>
+                    <a href={`mailto:${SITE_DATA.email}`} className="block text-base lg:text-lg font-light hover:text-white transition-colors font-poppins text-white/90 w-full mb-1">{SITE_DATA.email}</a>
+                    <a href={`mailto:${SITE_DATA.salesEmail}`} className="block text-base lg:text-lg font-light hover:text-white transition-colors font-poppins text-white/90 w-full">{SITE_DATA.salesEmail}</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="w-full bg-[#fbf8ef] border border-stone-200 rounded-[2rem] p-10 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-sm hover:shadow-xl transition-shadow">
+               <div className="text-center sm:text-left w-full">
+                 <h4 className="text-stone-900 font-medium font-poppins mb-2 text-xl">Direct Assistance</h4>
+                 <p className="text-stone-500 text-sm font-light font-poppins">Our team is available to assist with inquiries.</p>
+               </div>
+               <a href={`https://wa.me/${SITE_DATA.whatsapp}`} className="bg-[#25D366] hover:bg-green-600 text-white px-8 py-5 rounded-xl font-bold text-xs tracking-widest uppercase flex items-center justify-center gap-3 transition-colors font-poppins shadow-xl w-full sm:w-auto shrink-0">
+                 <MessageCircle size={20} /> WhatsApp
+               </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+);
+
 const LandingView = () => {
   return (
     <div className="w-full flex flex-col min-h-screen bg-[#faf8f2]">
@@ -1389,7 +1644,7 @@ export default function App() {
               <AboutSection navigate={setCurrentRoute} />
               <ProcessSection navigate={setCurrentRoute} />
               <FeaturedProjects navigate={setCurrentRoute} />
-              <GallerySection navigate={setCurrentRoute} />
+              <ProjectProgressGallery navigate={setCurrentRoute} />
               <DocumentationPreview navigate={setCurrentRoute} />
               <WhyChooseABMSection />
               <FAQSection />
